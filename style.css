@@ -513,10 +513,6 @@ button:focus-visible,
   margin-bottom: 10px;
 }
 
-.inventory-toggle {
-  display: none;
-}
-
 .inventory-title {
   margin: 0;
   font-size: 14px;
@@ -1500,31 +1496,9 @@ kbd {
       font-size: 7px;
     }
 
-    /* MOBILE INVENTORY TOGGLE */
-
-  .inventory-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 30px;
-    padding: 5px 10px;
-    border: 1px solid var(--border-brass);
-    border-radius: var(--radius-sm);
-    background: var(--bg-elevated);
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 10px;
-    font-weight: 600;
-  }
-
   .inventory-content {
-    display: none;
-    margin-top: 8px;
-  }
-
-  .inventory-dock.is-open .inventory-content {
     display: block;
+    margin-top: 8px;
   }
 }
 
@@ -1598,19 +1572,8 @@ kbd {
     width: 100%;
   }
 
-  /* Inventory toggle */
-  .inventory-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .inventory-content {
-    display: none;
-    margin-top: 8px;
-  }
-
-  .inventory-dock.is-open .inventory-content {
-    display: block;
+  display: block;
+  margin-top: 8px;
   }
 }

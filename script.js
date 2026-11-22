@@ -306,8 +306,6 @@ const dom = {
   activeItemBanner: document.getElementById('active-item-banner'),
   inventoryGrid: document.getElementById('inventory-grid'),
   inventoryDock: document.getElementById('inventory-dock'),
-  inventoryToggle: document.getElementById('inventory-toggle'),
-  inventoryToggleIcon: document.getElementById('inventory-toggle-icon'),
 
   modalInstructions: document.getElementById('modal-instructions'),
   modalPuzzle: document.getElementById('modal-puzzle'),
@@ -1298,26 +1296,6 @@ function triggerHint() {
 // ---------------------------------------------------------------------------
 
 function bindEvents() {
-    // MOBILE LANDSCAPE INVENTORY TOGGLE
-  const mobileLandscape = window.matchMedia(
-    '(orientation: landscape) and (max-height: 650px)'
-  );
-  function updateInventoryDisplay() {
-    if (!mobileLandscape.matches) {
-      dom.inventoryDock.classList.remove('is-open');
-      dom.inventoryToggle.setAttribute('aria-expanded', 'false');
-      dom.inventoryToggleIcon.textContent = '▼';
-    }
-  }
-  dom.inventoryToggle.addEventListener('click', () => {
-    const isOpen = dom.inventoryDock.classList.toggle('is-open');
-
-    dom.inventoryToggle.setAttribute('aria-expanded', String(isOpen));
-    dom.inventoryToggleIcon.textContent = isOpen ? '▲' : '▼';
-  });
-  mobileLandscape.addEventListener('change', updateInventoryDisplay);
-  updateInventoryDisplay();
-
   // Start Screen & Game Over Navigation
   dom.btnStartGame.addEventListener('click', startGame);
   dom.btnPlayAgain.addEventListener('click', startGame);
