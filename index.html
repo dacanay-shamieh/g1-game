@@ -163,7 +163,7 @@
             viewBox="0 0 960 540"
             role="img"
             aria-label="Zoology Hall interactive escape room"
-            preserveAspectRatio="none"
+            preserveAspectRatio="xMidYMid slice"
           >
             <defs>
               <linearGradient id="zoo-wall" x1="0" y1="0" x2="0" y2="1">
@@ -352,7 +352,7 @@
             viewBox="0 0 960 540"
             role="img"
             aria-label="Arts Gallery interactive escape room"
-            preserveAspectRatio="none"
+            preserveAspectRatio="xMidYMid slice"
           >
             <defs>
               <linearGradient id="arts-wall" x1="0" y1="0" x2="0" y2="1">
@@ -497,7 +497,7 @@
             viewBox="0 0 960 540"
             role="img"
             aria-label="Astronomy Dome interactive escape room"
-            preserveAspectRatio="none"
+            preserveAspectRatio="xMidYMid slice"
           >
             <defs>
               <linearGradient id="astro-wall" x1="0" y1="0" x2="0" y2="1">
@@ -625,18 +625,33 @@
           </p>
         </div>
 
-        <!-- Bottom Inventory Dock -->
-        <section class="inventory-dock" aria-label="Player inventory">
-          <div class="inventory-header">
-            <h2 class="inventory-title">Collected Artifacts</h2>
-            <span id="active-item-banner" class="active-item-banner">
-              Select an item below, then click an object in any room to use it.
-            </span>
-          </div>
+
+      <!-- Bottom Inventory Dock -->
+      <section class="inventory-dock" id="inventory-dock" aria-label="Player inventory">
+        <div class="inventory-header">
+          <h2 class="inventory-title">Collected Artifacts</h2>
+          <!-- Mobile-only inventory toggle -->
+          <button
+            type="button"
+            id="inventory-toggle"
+            class="inventory-toggle"
+            aria-expanded="false"
+            aria-controls="inventory-content"
+          >
+            Inventory <span id="inventory-toggle-icon">▼</span>
+          </button>
+
+          <span id="active-item-banner" class="active-item-banner">
+            Select an item below, then click an object in any room to use it.
+          </span>
+        </div>
+        <!-- Collapsible inventory content -->
+        <div id="inventory-content" class="inventory-content">
           <div id="inventory-grid" class="inventory-grid">
             <!-- Populated dynamically by script.js -->
           </div>
-        </section>
+        </div>
+      </section>
       </div>
     </main>
 
