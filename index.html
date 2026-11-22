@@ -622,33 +622,32 @@
           </p>
         </div>
 
+        <!-- Bottom Inventory Dock -->
+        <section class="inventory-dock" id="inventory-dock" aria-label="Player inventory">
+          <div class="inventory-header">
+            <h2 class="inventory-title">Collected Artifacts</h2>
 
-      <!-- Bottom Inventory Dock -->
-      <section class="inventory-dock" id="inventory-dock" aria-label="Player inventory">
-        <div class="inventory-header">
-          <h2 class="inventory-title">Collected Artifacts</h2>
-          <!-- Mobile-only inventory toggle -->
-          <button
-            type="button"
-            id="inventory-toggle"
-            class="inventory-toggle"
-            aria-expanded="false"
-            aria-controls="inventory-content"
-          >
-            Inventory <span id="inventory-toggle-icon">▼</span>
-          </button>
+            <button
+              type="button"
+              id="inventory-toggle"
+              class="inventory-toggle"
+              aria-expanded="false"
+              aria-controls="inventory-content"
+            >
+              Inventory <span id="inventory-toggle-icon">▼</span>
+            </button>
 
-          <span id="active-item-banner" class="active-item-banner">
-            Select an item below, then click an object in any room to use it.
-          </span>
-        </div>
-        <!-- Collapsible inventory content -->
-        <div id="inventory-content" class="inventory-content">
-          <div id="inventory-grid" class="inventory-grid">
-            <!-- Populated dynamically by script.js -->
+            <span id="active-item-banner" class="active-item-banner">
+              Select an item below, then click an object in any room to use it.
+            </span>
           </div>
-        </div>
-      </section>
+
+          <div id="inventory-content" class="inventory-content">
+            <div id="inventory-grid" class="inventory-grid">
+              <!-- Populated dynamically by script.js -->
+            </div>
+          </div>
+        </section>
       </div>
     </main>
 

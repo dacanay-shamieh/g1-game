@@ -952,7 +952,7 @@ kbd {
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS (Tablet & Mobile)
    ========================================================================== */
-@media (max-width: 960px) {
+@media (max-width: 600px) {
   .hud-bar {
     flex-wrap: wrap;
     padding: 10px 14px;
@@ -1516,6 +1516,93 @@ kbd {
     font-family: inherit;
     font-size: 10px;
     font-weight: 600;
+  }
+
+  .inventory-content {
+    display: none;
+    margin-top: 8px;
+  }
+
+  .inventory-dock.is-open .inventory-content {
+    display: block;
+  }
+}
+
+/* ==========================================================
+   MOBILE LANDSCAPE — FULL ROOM VIEW WITH VERTICAL SCROLL
+   ========================================================== */
+
+@media (orientation: landscape) and (max-height: 650px) {
+
+  #game-screen.screen--active {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    width: 100%;
+    height: auto;
+    min-height: 100dvh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding: 8px;
+    gap: 10px;
+  }
+
+  /* Keep the HUD at the top */
+  .hud-bar {
+    flex: none;
+    width: 100%;
+  }
+
+  /* Give the room its own full-width area */
+  .stage-wrapper {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+  }
+
+  .scene-frame {
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+  }
+
+  .room-svg {
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+
+  .room-svg--active {
+    display: block;
+  }
+
+  /* Log appears below the room */
+  .clue-bar {
+    flex: none;
+    width: 100%;
+  }
+
+  /* Inventory appears below the log */
+  .inventory-dock {
+    flex: none;
+    width: 100%;
+  }
+
+  /* Inventory toggle */
+  .inventory-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .inventory-content {
