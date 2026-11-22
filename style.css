@@ -1,15 +1,22 @@
 /* ==========================================================================
    CURATOR'S WING — STYLE SHEET
-   Pure CSS architecture (no frameworks). Follows 60-30-10 museum palette:
-   - 60% Neutral Obsidian Backdrop (#0c1017)
-   - 30% Structural Museum Panels (#141a24 / #1b2230)
-   - 10% Antique Brass & State Accents (#d4a553 / #34c38f / #e25c5c)
+   Pure CSS architecture (no frameworks).
+
+   60-30-10 museum palette:
+   - 60% Neutral Obsidian Backdrop
+   - 30% Structural Museum Panels
+   - 10% Antique Brass & State Accents
+   ========================================================================== */
+
+/* ==========================================================================
+   1. ROOT VARIABLES
    ========================================================================== */
 
 :root {
   --bg-canvas: #0c1017;
   --bg-surface: #141a24;
   --bg-elevated: #1c2433;
+
   --border-hairline: rgba(242, 237, 226, 0.14);
   --border-brass: rgba(212, 165, 83, 0.45);
 
@@ -22,17 +29,22 @@
   --accent-emerald: #34c38f;
   --accent-danger: #e25c5c;
 
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
+
   --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset & Base Rules */
+/* ==========================================================================
+   2. RESET & BASE RULES
+   ========================================================================== */
+
 *,
 *::before,
 *::after {
@@ -64,18 +76,19 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .tabular-nums {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
 
-[hidden] {
-  display: none !important;
-}
-
 /* ==========================================================================
-   SCREEN MANAGEMENT (Start, Gameplay, Game Over)
+   3. SCREEN MANAGEMENT
    ========================================================================== */
+
 .screen {
   display: none;
   min-height: 100vh;
@@ -85,14 +98,21 @@ button:focus-visible,
   display: flex;
 }
 
-/* Start & Game Over Centered Cards */
+/* ==========================================================================
+   4. START SCREEN & GAME OVER SCREEN
+   ========================================================================== */
+
 #start-screen,
 #gameover-screen {
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
   background:
-    radial-gradient(circle at 50% 20%, rgba(212, 165, 83, 0.08), transparent 55%),
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(212, 165, 83, 0.08),
+      transparent 55%
+    ),
     var(--bg-canvas);
 }
 
@@ -100,34 +120,34 @@ button:focus-visible,
 .gameover-card {
   width: 100%;
   max-width: 620px;
+  padding: 36px 32px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-hairline);
   border-radius: var(--radius-lg);
-  padding: 36px 32px;
   text-align: center;
 }
 
 .start-kicker {
   margin: 0 0 10px;
+  color: var(--accent-brass);
   font-size: 13px;
   font-weight: 500;
-  color: var(--accent-brass);
   letter-spacing: 0.02em;
 }
 
 .start-title {
   margin: 0 0 16px;
+  color: var(--text-primary);
   font-family: var(--font-display);
   font-size: clamp(2.1rem, 4.5vw, 3.1rem);
   font-weight: 700;
   line-height: 1.12;
-  color: var(--text-primary);
   text-wrap: balance;
 }
 
 .start-subtitle {
-  margin: 0 auto 28px;
   max-width: 52ch;
+  margin: 0 auto 28px;
   color: var(--text-secondary);
   font-size: 15px;
 }
@@ -137,7 +157,8 @@ button:focus-visible,
   font-weight: 600;
 }
 
-/* Clean Unboxed Metrics Strip */
+/* Start Screen Metrics */
+
 .start-metrics {
   display: flex;
   align-items: center;
@@ -157,14 +178,14 @@ button:focus-visible,
 }
 
 .metric-label {
-  font-size: 12px;
   color: var(--text-muted);
+  font-size: 12px;
 }
 
 .metric-value {
+  color: var(--text-primary);
   font-size: 18px;
   font-weight: 700;
-  color: var(--text-primary);
 }
 
 .metric-divider {
@@ -175,12 +196,15 @@ button:focus-visible,
 
 .start-actions {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
-/* Shared Primary & Secondary Buttons */
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -192,7 +216,10 @@ button:focus-visible,
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: transform 160ms var(--ease-settle), background-color 160ms ease, border-color 160ms ease;
+  transition:
+    transform 160ms var(--ease-settle),
+    background-color 160ms ease,
+    border-color 160ms ease;
 }
 
 .btn:active {
@@ -220,8 +247,9 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   GAMEPLAY LAYOUT & TOP HUD BAR
+   6. GAMEPLAY LAYOUT & HUD
    ========================================================================== */
+
 .game-layout {
   flex-direction: column;
   min-height: 100vh;
@@ -245,20 +273,21 @@ button:focus-visible,
 }
 
 .hud-title {
+  color: var(--text-primary);
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 700;
-  color: var(--text-primary);
   white-space: nowrap;
 }
 
 .hud-seals {
-  font-size: 12px;
   color: var(--accent-brass);
+  font-size: 12px;
   white-space: nowrap;
 }
 
-/* Room Navigation Switcher */
+/* Room Navigation */
+
 .room-switcher {
   display: flex;
   align-items: center;
@@ -283,7 +312,10 @@ button:focus-visible,
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
 }
 
 .room-tab:hover {
@@ -297,22 +329,23 @@ button:focus-visible,
 }
 
 .room-tab-num {
+  color: var(--accent-brass);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-brass);
 }
 
 .room-tab-status {
+  color: var(--text-muted);
   font-size: 11px;
   font-weight: 500;
-  color: var(--text-muted);
 }
 
 .room-tab-status--unlocked {
   color: var(--accent-emerald);
 }
 
-/* HUD Metrics & Utility Controls */
+/* HUD Controls & Statistics */
+
 .hud-controls {
   display: flex;
   align-items: center;
@@ -328,14 +361,14 @@ button:focus-visible,
 }
 
 .hud-stat-label {
-  font-size: 11px;
   color: var(--text-muted);
+  font-size: 11px;
 }
 
 .hud-stat-val {
+  color: var(--text-primary);
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary);
 }
 
 .hud-stat-val--warning {
@@ -351,15 +384,17 @@ button:focus-visible,
 .btn-icon {
   min-height: 38px;
   padding: 6px 12px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: border-color 160ms ease, background-color 160ms ease;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
 }
 
 .btn-icon:hover {
@@ -372,28 +407,21 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   MAIN STAGE: SVG ROOM CANVAS + CLUE BAR + INVENTORY DOCK
+   7. MAIN STAGE & SVG ROOM
    ========================================================================== */
+
 .stage-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
   padding: 16px 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
 }
 
 .scene-frame {
-  /*position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background-color: #070a0f;
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);*/
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
@@ -416,15 +444,19 @@ button:focus-visible,
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
-/* Interactive SVG Hotspots */
+/* Interactive Hotspots */
+
 .hotspot {
   cursor: pointer;
-  transition: filter 160ms ease, opacity 160ms ease;
+  transition:
+    filter 160ms ease,
+    opacity 160ms ease;
 }
 
 .hotspot:hover,
@@ -437,7 +469,8 @@ button:focus-visible,
   pointer-events: none;
 }
 
-/* Animated state transforms inside SVG */
+/* Room Animations */
+
 #arts-canvas-dust {
   transition: opacity 400ms ease;
 }
@@ -456,12 +489,16 @@ button:focus-visible,
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Curator's Clue Log Strip */
+/* ==========================================================================
+   8. CLUE BAR
+   ========================================================================== */
+
 .clue-bar {
   display: flex;
   align-items: center;
@@ -473,17 +510,17 @@ button:focus-visible,
 }
 
 .clue-label {
+  color: var(--accent-brass);
   font-size: 12px;
   font-weight: 700;
-  color: var(--accent-brass);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .clue-message {
   margin: 0;
-  font-size: 14px;
   color: var(--text-primary);
+  font-size: 14px;
 }
 
 .clue-bar--error .clue-label {
@@ -495,13 +532,14 @@ button:focus-visible,
 }
 
 /* ==========================================================================
-   BOTTOM INVENTORY DOCK
+   9. INVENTORY DOCK
    ========================================================================== */
+
 .inventory-dock {
+  padding: 14px 16px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-hairline);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
 }
 
 .inventory-header {
@@ -515,14 +553,14 @@ button:focus-visible,
 
 .inventory-title {
   margin: 0;
+  color: var(--text-primary);
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-primary);
 }
 
 .active-item-banner {
-  font-size: 13px;
   color: var(--text-secondary);
+  font-size: 13px;
 }
 
 .active-item-banner--equipped {
@@ -544,12 +582,15 @@ button:focus-visible,
   gap: 5px;
   min-height: 74px;
   padding: 8px 6px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
   background-color: var(--bg-canvas);
   color: var(--text-muted);
   text-align: center;
-  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms var(--ease-settle);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms var(--ease-settle);
 }
 
 .inv-slot--empty {
@@ -558,8 +599,8 @@ button:focus-visible,
 }
 
 .inv-slot--owned {
-  color: var(--text-primary);
   background-color: var(--bg-elevated);
+  color: var(--text-primary);
 }
 
 .inv-slot--owned:hover {
@@ -579,47 +620,49 @@ button:focus-visible,
 }
 
 .inv-icon {
-  width: 28px;
-  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 28px;
+  height: 28px;
 }
 
 .inv-icon img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  display: block;
 }
 
 .inv-name {
+  max-width: 100%;
+  overflow: hidden;
+  color: inherit;
   font-size: 11px;
   font-weight: 600;
   line-height: 1.2;
-  max-width: 100%;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .inv-meta {
-  font-size: 10px;
   color: var(--text-muted);
+  font-size: 10px;
 }
 
 /* ==========================================================================
-   MODALS (Instructions & Interactive Puzzle Locks)
+   10. MODALS
    ========================================================================== */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background-color: rgba(6, 9, 14, 0.78);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+  background-color: rgba(6, 9, 14, 0.78);
 }
 
 .modal-card {
@@ -627,10 +670,10 @@ button:focus-visible,
   max-width: 540px;
   max-height: 90vh;
   overflow-y: auto;
+  padding: 24px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-brass);
   border-radius: var(--radius-lg);
-  padding: 24px;
   animation: modalRise 180ms var(--ease-settle);
 }
 
@@ -639,6 +682,7 @@ button:focus-visible,
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -663,8 +707,8 @@ button:focus-visible,
 .modal-close {
   width: 40px;
   height: 40px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   font-size: 22px;
@@ -681,18 +725,18 @@ button:focus-visible,
 }
 
 .modal-footer {
-  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .instructions-list {
-  margin: 12px 0 0;
-  padding-left: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: 12px 0 0;
+  padding-left: 20px;
 }
 
 .instructions-list strong {
@@ -702,19 +746,36 @@ button:focus-visible,
 kbd {
   display: inline-block;
   padding: 1px 6px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-primary);
-  background-color: var(--bg-elevated);
   border: 1px solid var(--border-hairline);
   border-radius: 4px;
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
 }
 
-/* Interactive Puzzle Widgets Inside Modal */
+/* ==========================================================================
+   11. PUZZLE WIDGETS
+   ========================================================================== */
+
 .puzzle-desc {
   margin: 0 0 18px;
   color: var(--text-secondary);
 }
+
+.puzzle-feedback {
+  min-height: 22px;
+  margin: 8px 0 0;
+  color: var(--accent-danger);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.puzzle-feedback--ok {
+  color: var(--accent-emerald);
+}
+
+/* Number Drawer */
 
 .dial-row {
   display: flex;
@@ -737,8 +798,8 @@ kbd {
 .tumbler-btn {
   width: 48px;
   height: 44px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   font-size: 18px;
@@ -750,27 +811,28 @@ kbd {
 }
 
 .tumbler-value {
+  min-width: 44px;
+  color: var(--accent-brass);
   font-family: var(--font-mono);
   font-size: 28px;
   font-weight: 700;
-  color: var(--accent-brass);
-  min-width: 44px;
   text-align: center;
 }
 
-/* Color Dial Buttons */
+/* Paint Chest Color Dials */
+
 .color-dial-btn {
-  min-width: 110px;
-  min-height: 76px;
-  padding: 10px;
-  border-radius: var(--radius-md);
-  border: 2px solid var(--border-hairline);
-  background-color: var(--bg-canvas);
-  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  min-width: 110px;
+  min-height: 76px;
+  padding: 10px;
+  border: 2px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
   font-size: 13px;
   font-weight: 600;
 }
@@ -782,11 +844,12 @@ kbd {
 .color-swatch {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
 }
 
-/* Habitat Match Rows */
+/* Habitat Match */
+
 .habitat-rows {
   display: flex;
   flex-direction: column;
@@ -806,22 +869,23 @@ kbd {
 }
 
 .habitat-creature {
-  font-weight: 600;
   color: var(--text-primary);
+  font-weight: 600;
 }
 
 .habitat-select {
   min-height: 44px;
   padding: 6px 12px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
   background-color: var(--bg-elevated);
   color: var(--text-primary);
   font-family: inherit;
   font-size: 14px;
 }
 
-/* Constellation Grid */
+/* Constellation Selection */
+
 .constellation-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -832,13 +896,16 @@ kbd {
 .constellation-btn {
   min-height: 52px;
   padding: 10px 8px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
   background-color: var(--bg-canvas);
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
-  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
 }
 
 .constellation-btn:hover {
@@ -855,14 +922,15 @@ kbd {
 .blueprint-callout {
   padding: 10px 14px;
   margin-bottom: 14px;
-  border-radius: var(--radius-sm);
   border: 1px solid var(--border-brass);
+  border-radius: var(--radius-sm);
   background-color: rgba(212, 165, 83, 0.08);
   color: var(--text-primary);
   font-size: 13px;
 }
 
-/* Exit Seal Socket Slots inside Seal Modal */
+/* Exit Seal Sockets */
+
 .seal-sockets {
   display: flex;
   flex-direction: column;
@@ -891,25 +959,14 @@ kbd {
 }
 
 .seal-socket-info span {
-  font-size: 12px;
   color: var(--text-muted);
-}
-
-.puzzle-feedback {
-  min-height: 22px;
-  margin: 8px 0 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent-danger);
-}
-
-.puzzle-feedback--ok {
-  color: var(--accent-emerald);
+  font-size: 12px;
 }
 
 /* ==========================================================================
-   GAME OVER SCORE BREAKDOWN
+   12. GAME OVER SCORE BREAKDOWN
    ========================================================================== */
+
 .score-breakdown {
   display: flex;
   flex-direction: column;
@@ -926,8 +983,8 @@ kbd {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 14px;
   color: var(--text-secondary);
+  font-size: 14px;
 }
 
 .score-row strong {
@@ -939,104 +996,16 @@ kbd {
   margin-top: 6px;
   padding-top: 10px;
   border-top: 1px solid var(--border-hairline);
-  text-align: center;
+  color: var(--accent-emerald);
   font-size: 13px;
   font-weight: 700;
-  color: var(--accent-emerald);
+  text-align: center;
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS (Tablet & Mobile)
+   13. MOBILE PORTRAIT — ROTATE DEVICE PROMPT
    ========================================================================== */
-@media (max-width: 600px) {
-  .hud-bar {
-    flex-wrap: wrap;
-    padding: 10px 14px;
-    gap: 10px;
-  }
 
-  .room-switcher {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .inventory-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 600px) {
-  .start-card,
-  .gameover-card {
-    padding: 24px 18px;
-  }
-
-  .hud-brand {
-    gap: 8px;
-  }
-
-  .hud-title {
-    font-size: 16px;
-  }
-
-  .hud-controls {
-    gap: 10px;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .hud-stat {
-    align-items: flex-start;
-  }
-
-  .room-tab {
-    flex: 1;
-    justify-content: center;
-    padding: 8px 6px;
-    font-size: 12px;
-  }
-
-  .room-tab-status {
-    display: none;
-  }
-
-  .stage-wrapper {
-    padding: 10px 12px 18px;
-  }
-
-  .clue-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .dial-row {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .constellation-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* Respect Reduced Motion Preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* =========================================
-   MOBILE LANDSCAPE SETTINGS
-========================================= */
-
-/* Rotate-device prompt */
 #rotate-prompt {
   display: none;
 }
@@ -1050,8 +1019,8 @@ kbd {
     align-items: center;
     justify-content: center;
     padding: 24px;
-    background: #0c1017;
-    color: #f0e6d2;
+    background: var(--bg-canvas);
+    color: var(--text-primary);
     text-align: center;
   }
 
@@ -1061,43 +1030,130 @@ kbd {
 
   .rotate-icon {
     display: block;
-    font-size: 56px;
     margin-bottom: 18px;
+    font-size: 56px;
   }
 
   .rotate-card h2 {
-    font-size: 23px;
     margin-bottom: 12px;
+    font-size: 23px;
   }
 
   .rotate-card p {
-    color: #b9c2d0;
+    color: var(--text-secondary);
     font-size: 15px;
     line-height: 1.6;
   }
 
   .rotate-arrow {
     display: block;
-    font-size: 38px;
     margin-top: 18px;
-    color: #d4a553;
+    color: var(--accent-brass);
+    font-size: 38px;
   }
 }
 
-/* =========================================
-   LANDSCAPE SCREEN OPTIMIZATION
-========================================= */
+/* ==========================================================================
+   14. TABLET & MOBILE — SMALL SCREENS
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  /* Start and Game Over */
+
+  .start-card,
+  .gameover-card {
+    padding: 24px 18px;
+  }
+
+  /* HUD */
+
+  .hud-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+
+  .hud-brand {
+    gap: 8px;
+  }
+
+  .hud-title {
+    font-size: 16px;
+  }
+
+  .hud-controls {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .hud-stat {
+    align-items: flex-start;
+  }
+
+  /* Room Navigation */
+
+  .room-switcher {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .room-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .room-tab-status {
+    display: none;
+  }
+
+  /* Game Area */
+
+  .stage-wrapper {
+    padding: 10px 12px 18px;
+  }
+
+  .clue-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* Inventory */
+
+  .inventory-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Puzzle Modals */
+
+  .dial-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .constellation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================================================
+   15. LANDSCAPE — COMPACT GAME LAYOUT
+   ========================================================================== */
 
 @media (orientation: landscape) and (max-height: 650px) {
-
   /* Prevent horizontal scrolling */
+
   body {
     overflow-x: hidden;
   }
 
-  /* =====================================
+  /* -------------------------------------
      GAME HUD
-  ===================================== */
+     ------------------------------------- */
 
   .game-layout {
     height: 100vh;
@@ -1111,8 +1167,8 @@ kbd {
     grid-template-columns: auto minmax(0, 1fr);
     grid-template-rows: auto auto;
     align-items: center;
-    gap: 6px 12px;
-    padding: 6px 12px;
+    gap: 4px 10px;
+    padding: 4px 10px;
     flex-shrink: 0;
   }
 
@@ -1120,33 +1176,34 @@ kbd {
     grid-column: 1;
     grid-row: 1;
     min-width: 0;
-    gap: 8px;
+    gap: 6px;
   }
 
   .hud-title {
-    font-size: clamp(14px, 2vw, 19px);
+    font-size: 15px;
   }
 
   .hud-seals {
     font-size: 10px;
   }
 
-  /* Room navigation gets its own row */
+  /* Room Navigation */
+
   .room-switcher {
     grid-column: 1 / -1;
     grid-row: 2;
     order: initial;
     width: 100%;
     justify-content: center;
-    gap: 8px;
-    padding: 3px;
+    gap: 5px;
+    padding: 2px;
   }
 
   .room-tab {
     flex: 1;
     justify-content: center;
-    min-height: 32px;
-    padding: 4px 10px;
+    min-height: 28px;
+    padding: 3px 8px;
     font-size: 12px;
   }
 
@@ -1155,14 +1212,15 @@ kbd {
     font-size: 10px;
   }
 
-  /* Timer, score, and utility buttons */
+  /* Timer, Score & Utility Buttons */
+
   .hud-controls {
     grid-column: 2;
     grid-row: 1;
     width: auto;
+    min-width: 0;
     justify-content: flex-end;
     gap: 8px;
-    min-width: 0;
   }
 
   .hud-stat {
@@ -1188,107 +1246,111 @@ kbd {
     font-size: 10px;
   }
 
-  /* =====================================
+  /* -------------------------------------
      MAIN GAME AREA
-  ===================================== */
+     ------------------------------------- */
 
   .stage-wrapper {
     display: flex;
-    flex: 1;
+    flex: none;
     flex-direction: column;
-    min-height: 0;
+    gap: 5px;
     width: 100%;
     max-width: none;
-    padding: 6px 12px;
-    gap: 6px;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    padding: 4px 10px;
+  }
+
+  .scene-frame {
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
   }
 
-  /* Room illustration gets priority */
-  .scene-frame {
-    flex: 1 1 0;
-    min-height: 0;
-    width: 100%;
-    aspect-ratio: auto;
-  }
-
-  .room-svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* =====================================
+  /* -------------------------------------
      CLUE BAR
-  ===================================== */
+     ------------------------------------- */
 
   .clue-bar {
-    flex-shrink: 0;
-    padding: 5px 10px;
-    gap: 10px;
+    flex: none;
+    width: 100%;
+    min-height: 32px;
+    padding: 4px 9px;
+    gap: 8px;
   }
 
   .clue-label {
-    font-size: 11px;
-  }
-
-  .clue-message {
-    font-size: 11px;
-    line-height: 1.3;
-  }
-
-  /* =====================================
-     INVENTORY
-  ===================================== */
-
-  .inventory-dock {
-    flex-shrink: 0;
-    padding: 6px 10px;
-  }
-
-  .inventory-header {
-    margin-bottom: 5px;
-    gap: 5px;
-  }
-
-  .inventory-title {
-    font-size: 12px;
-  }
-
-  .active-item-banner {
     font-size: 10px;
   }
 
-  /* All nine slots in one row */
+  .clue-message {
+    max-height: 2.5em;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  /* -------------------------------------
+     INVENTORY
+     ------------------------------------- */
+
+  .inventory-dock {
+    flex: none;
+    width: 100%;
+    padding: 5px 8px;
+  }
+
+  .inventory-header {
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .inventory-title {
+    font-size: 11px;
+  }
+
+  .active-item-banner {
+    font-size: 9px;
+  }
+
+  .inventory-content {
+    display: block;
+    margin-top: 8px;
+  }
+
   .inventory-grid {
     grid-template-columns: repeat(9, minmax(0, 1fr));
-    gap: 5px;
+    gap: 4px;
   }
 
   .inv-slot {
     min-width: 0;
-    min-height: 48px;
-    padding: 3px;
-    gap: 2px;
+    min-height: 38px;
+    padding: 2px;
+    gap: 1px;
   }
 
   .inv-icon {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
   }
 
   .inv-name {
-    font-size: 9px;
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-
-  .inv-meta {
     font-size: 8px;
   }
 
-  /* =====================================
+  .inv-meta {
+    font-size: 7px;
+  }
+
+  /* -------------------------------------
      PUZZLE MODALS
-  ===================================== */
+     ------------------------------------- */
 
   .modal-backdrop {
     padding: 6px;
@@ -1303,24 +1365,21 @@ kbd {
   .modal-title {
     font-size: 18px;
   }
-}
 
-/* =========================================
-   LANDSCAPE HOMEPAGE FIT
-========================================= */
-
-@media (orientation: landscape) and (max-height: 650px) {
+  /* -------------------------------------
+     START & GAME OVER SCREENS
+     ------------------------------------- */
 
   #start-screen.screen--active,
   #gameover-screen.screen--active {
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100vh;
     height: 100dvh;
     min-height: 0;
     overflow: hidden;
-    align-items: center;
-    justify-content: center;
     padding: 10px 16px;
   }
 
@@ -1341,13 +1400,13 @@ kbd {
   }
 
   .start-title {
-    font-size: clamp(1.5rem, 4vw, 2.3rem);
     margin-bottom: 8px;
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
   }
 
   .start-subtitle {
-    font-size: 12px;
     margin-bottom: 12px;
+    font-size: 12px;
   }
 
   .start-metrics {
@@ -1365,9 +1424,6 @@ kbd {
   }
 
   .start-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
   }
 
@@ -1376,204 +1432,42 @@ kbd {
     padding: 6px 14px;
     font-size: 12px;
   }
-}
 
-/* GIVE THE ROOM MORE SCREEN SPACE */
+  /* -------------------------------------
+     MOBILE LANDSCAPE GAME SCROLLING
+     ------------------------------------- */
 
-@media (orientation: landscape) and (max-height: 650px) {
-
-  /* Keep the game within the viewport */
-  .game-layout {
-    height: 100dvh;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  /* Make the top HUD more compact */
-  .hud-bar {
-    padding: 4px 10px;
-    gap: 4px 10px;
-  }
-
-  .hud-brand {
-    gap: 6px;
-  }
-
-  .hud-title {
-    font-size: 15px;
-  }
-
-  .room-switcher {
-    padding: 2px;
-    gap: 5px;
-  }
-
-  .room-tab {
-    min-height: 28px;
-    padding: 3px 8px;
-  }
-
-  /* Let the stage use all remaining height */
-  .stage-wrapper {
-    flex: 1 1 0;
-    min-height: 0;
-    padding: 4px 10px;
-    gap: 5px;
-  }
-
-  /* Make the room the priority */
-  .scene-frame {
-    flex: 1 1 0;
-    min-height: 0;
-    width: 100%;
-    aspect-ratio: auto;
-  }
-
-  .room-svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Reduce Curator's Log */
-  .clue-bar {
-    flex: 0 0 auto;
-    padding: 4px 9px;
-    gap: 8px;
-    min-height: 32px;
-  }
-
-  .clue-label {
-    font-size: 10px;
-  }
-
-  .clue-message {
-    font-size: 10px;
-    line-height: 1.25;
-    max-height: 2.5em;
-    overflow: hidden;
-  }
-
-    /* Reduce Collected Artifacts section */
-    .inventory-dock {
-      flex: 0 0 auto;
-      padding: 5px 8px;
-    }
-
-    .inventory-header {
-      margin-bottom: 4px;
-      gap: 4px;
-    }
-
-    .inventory-title {
-      font-size: 11px;
-    }
-
-    .active-item-banner {
-      font-size: 9px;
-    }
-
-    .inventory-grid {
-      grid-template-columns: repeat(9, minmax(0, 1fr));
-      gap: 4px;
-    }
-
-    .inv-slot {
-      min-height: 38px;
-      padding: 2px;
-      gap: 1px;
-    }
-
-    .inv-icon {
-      width: 17px;
-      height: 17px;
-    }
-
-    .inv-name {
-      font-size: 8px;
-    }
-
-    .inv-meta {
-      font-size: 7px;
-    }
-
-  .inventory-content {
-    display: block;
-    margin-top: 8px;
-  }
-}
-
-/* ==========================================================
-   MOBILE LANDSCAPE — FULL ROOM VIEW WITH VERTICAL SCROLL
-   ========================================================== */
-
-@media (orientation: landscape) and (max-height: 650px) {
+  /*
+     The game screen contains the HUD and stage-wrapper.
+     The stage-wrapper contains the room, clue bar, and inventory.
+     Allow the whole game screen to scroll vertically when needed.
+  */
 
   #game-screen.screen--active {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-
     width: 100%;
     height: auto;
     min-height: 100dvh;
-
     overflow-x: hidden;
     overflow-y: auto;
-
     padding: 8px;
     gap: 10px;
   }
+}
 
-  /* Keep the HUD at the top */
-  .hud-bar {
-    flex: none;
-    width: 100%;
-  }
+/* ==========================================================================
+   16. ACCESSIBILITY — REDUCED MOTION
+   ========================================================================== */
 
-  /* Give the room its own full-width area */
-  .stage-wrapper {
-    flex: none;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    min-height: 0;
-  }
-
-  .scene-frame {
-    flex: none;
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 16 / 9;
-
-    overflow: hidden;
-  }
-
-  .room-svg {
-    width: 100%;
-    height: 100%;
-    display: none;
-  }
-
-  .room-svg--active {
-    display: block;
-  }
-
-  /* Log appears below the room */
-  .clue-bar {
-    flex: none;
-    width: 100%;
-  }
-
-  /* Inventory appears below the log */
-  .inventory-dock {
-    flex: none;
-    width: 100%;
-  }
-
-  .inventory-content {
-  display: block;
-  margin-top: 8px;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
