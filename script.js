@@ -1,29 +1,14 @@
-/**
- * ============================================================================
- * MYSTERIA'S WING: THREE-HALL ESCAPE — GAME ENGINE
- * ============================================================================
- * Pure vanilla JavaScript (ES2022) implementing:
- *  - Clean game state machine (TITLE -> PLAYING -> GAME_OVER)
- *  - Three interconnected point-and-click rooms (Zoology, Arts, Astronomy)
- *  - Cross-room item dependencies (every room's Exit Seal requires 2 items
- *    discovered in the OTHER two rooms)
- *  - Mouse, Touch, and Keyboard controls (1/2/3, Arrows, Tab/Enter, H, I, M, Esc)
- *  - Score system, countdown timer, penalties, and localStorage High Score
- *  - Web Audio API synthesized sound effects with mute toggle
- * ============================================================================
- */
-
 // ---------------------------------------------------------------------------
 // 1. CONSTANTS & STATIC GAME DEFINITIONS
 // ---------------------------------------------------------------------------
 
-const STORAGE_KEY = "mysterias_wing_high_score";
+const STORAGE_KEY = "mysterias_chamber_high_score";
 const INITIAL_TIME_SECONDS = 5 * 60; // 5 minutes
 const ROOM_ORDER = ["zoology", "arts", "astronomy"];
 
 /**
  * Catalog of all 9 collectible artifacts.
- * Each item originates in one wing and is used in another wing.
+ * Each item originates in one chamber and is used in another chamber.
  */
 const ITEM_CATALOG = {
   feather_brush: {
@@ -697,7 +682,7 @@ function finishGame(didWin) {
   dom.gameoverTitle.textContent = didWin ? "You Escaped!" : "Trapped";
   dom.gameoverMessage.textContent = didWin
     ? `Brilliant deduction! You unlatched Zoology, Arts, and Astronomy with ${formatTime(gameState.timeRemaining)} to spare (including +${gameState.timeRemaining * 2} pts time bonus).`
-    : "The museum security shutters sealed before all three wing locks could be opened.";
+    : "The museum security shutters sealed before all three chamber locks could be opened.";
 
   dom.finalScore.textContent = `${gameState.score} pts`;
   dom.finalHighScore.textContent = `${bestScore} pts`;
@@ -1286,7 +1271,7 @@ function openSealModal(roomId) {
           <div class="seal-socket ${placed ? "seal-socket--filled" : ""}">
             <div class="seal-socket-info">
               <strong>${item.name}</strong>
-              <span>Found in ${item.origin} Wing</span>
+              <span>Found in ${item.origin} Chamber</span>
             </div>
             ${
               placed
