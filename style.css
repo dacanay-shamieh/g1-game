@@ -180,6 +180,18 @@ button:focus-visible,
   gap: 12px;
 }
 
+/*download button*/
+.start-actions a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  background-color: var(--accent-brass);
+  color: #13100a;
+  border: 1px solid var(--accent-brass);
+}
+
 /* Shared Primary & Secondary Buttons */
 .btn {
   display: inline-flex;
@@ -1441,12 +1453,12 @@ kbd {
     font-size: 10px;
   }
 
-  .clue-message {
-    font-size: 10px;
-    line-height: 1.25;
-    max-height: 2.5em;
-    overflow: hidden;
-  }
+.clue-message {
+  font-size: 10px;
+  line-height: 1.25;
+  max-height: 2.5em;
+  overflow: hidden;
+}
 
   /* Reduce Collected Artifacts section */
   .inventory-dock {
